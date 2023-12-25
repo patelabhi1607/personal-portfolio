@@ -227,7 +227,7 @@ export const seoData: SEODataType = {
   title: "Abhishek Patel",
   description: "A passionate Full Stack Web Developer.",
   author: "Abhishek Patel",
-  image: "https://avatars3.githubusercontent.com/u/59178380?v=4",
+  image: "https://share.icloud.com/photos/0f3iWSWHw1uoVx6hSNqls7VGA",
   url: "https://main--portfolio-website-abhishekpatel.netlify.app",
   keywords: ["Abhishek", "Abhishek Patel", "Portfolio", "Abhishek Portfolio "],
 };
