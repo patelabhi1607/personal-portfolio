@@ -27,7 +27,7 @@ export const openSource = {
 export const contact = {};
 
 export const socialLinks: SocialLinksType = {
-  url: "https://main--portfolio-website-abhishekpatel.netlify.app",
+  url: "https://personal-portfolio-fawn-seven-44.vercel.app",
   linkedin: "https://www.linkedin.com/in/abhishek-patel-12221816a/",
   github: "https://github.com/patelabhi1607",
   twitter: "https://twitter.com/imabhishek1698",
@@ -201,7 +201,7 @@ export const projects: ProjectType[] = [
     name: "Developer Portfolio",
     desc: "Personal portfolio built with Next.js, TypeScript, and Bootstrap featuring Lottie animations, Iconify skill icons, and GitHub GraphQL integration.",
     github: "https://github.com/patelabhi1607/personal-portfolio",
-    link: "https://main--portfolio-website-abhishekpatel.netlify.app",
+    link: "https://personal-portfolio-fawn-seven-44.vercel.app",
   },
 ];
 
@@ -227,7 +227,7 @@ export const seoData: SEODataType = {
   author: "Abhishek Patel",
   image:
     "https://avatars.githubusercontent.com/u/51072743?s=400&u=6c8267aec613ac8d3c5069a411e6e30965cbc72e&v=4",
-  url: "https://main--portfolio-website-abhishekpatel.netlify.app",
+  url: "https://personal-portfolio-fawn-seven-44.vercel.app",
   keywords: [
     "Abhishek",
     "Abhishek Patel",
