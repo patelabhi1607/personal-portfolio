@@ -129,12 +129,12 @@ export const educationInfo: EducationType[] = [
 export const experience: ExperienceType[] = [
   {
     role: "Software Engineer — Backend & AI",
-    company: "GlobalLogic (Client: 6sense)",
+    company: "GlobalLogic",
     companyLogo: "/img/icons/common/globallogic_logo.svg",
     date: "May 2026 – Present",
-    desc: "Building backend APIs and AI/GenAI integrations for the 6sense revenue-AI platform as part of the Platform Apps Team.",
+    desc: "Building backend APIs and AI/GenAI integrations for an enterprise revenue-AI platform as part of the Platform Apps Team.",
     descBullets: [
-      "Develop and maintain backend APIs supporting core product workflows on the 6sense revenue-AI platform.",
+      "Develop and maintain backend APIs supporting core product workflows on an enterprise revenue-AI platform.",
       "Build automation tooling and services that streamline recurring engineering and data workflows, reducing manual effort.",
       "Integrate LLM and RAG-based approaches using LangChain & LlamaIndex to enhance product intelligence and automation.",
       "Contribute end-to-end across backend APIs and frontend (React) integration for selected product features.",
