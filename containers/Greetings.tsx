@@ -1,77 +1,70 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { greetings } from "../portfolio";
-import { Button, Container, Row, Col } from "reactstrap";
-import GreetingLottie from "../components/DisplayLottie";
-import SocialLinks from "../components/SocialLinks";
 
-const Greetings = () => {
+const roles = [
+  "Backend Engineer",
+  "AI / GenAI Engineer",
+  "RAG & LLM Specialist",
+  "Splunk & DataDog Expert",
+  "Distributed Systems Builder",
+];
+
+const TypingText = () => {
+  const [displayed, setDisplayed] = useState("");
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
   useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement!.scrollTop = 0;
-  });
+    const current = roles[roleIndex];
+    const speed = deleting ? 45 : 90;
+    const timeout = setTimeout(() => {
+      if (!deleting && charIndex < current.length) {
+        setDisplayed(current.slice(0, charIndex + 1));
+        setCharIndex((c) => c + 1);
+      } else if (!deleting && charIndex === current.length) {
+        setTimeout(() => setDeleting(true), 1800);
+      } else if (deleting && charIndex > 0) {
+        setDisplayed(current.slice(0, charIndex - 1));
+        setCharIndex((c) => c - 1);
+      } else {
+        setDeleting(false);
+        setRoleIndex((r) => (r + 1) % roles.length);
+      }
+    }, speed);
+    return () => clearTimeout(timeout);
+  }, [charIndex, deleting, roleIndex]);
 
   return (
-    <main>
-      <div className="position-relative">
-        <section className="section section-lg section-shaped pb-250">
-          <div className="shape shape-style-1 bg-gradient-info">
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-          <Container className="py-lg-md d-flex">
-            <div className="col px-0">
-              <Row>
-                <Col lg="6">
-                  <h1 className="display-3 text-white">
-                    {greetings.title + " "}
-                  </h1>
-                  <p className="lead text-white">{greetings.description}</p>
-                  <SocialLinks />
-                  {greetings.resumeLink && (
-                    <div className="btn-wrapper my-4">
-                      <Button
-                        className="btn-white btn-icon mb-3 mb-sm-0 ml-1"
-                        color="default"
-                        href={greetings.resumeLink}
-                      >
-                        <span className="btn-inner--icon mr-1">
-                          <i className="fa fa-file" />
-                        </span>
-                        <span className="btn-inner--text">See My Resume</span>
-                      </Button>
-                    </div>
-                  )}
-                </Col>
-                <Col lg="6">
-                  <GreetingLottie animationPath="/lottie/coding.json" />
-                </Col>
-              </Row>
-            </div>
-          </Container>
-          {/* SVG separator */}
-          <div className="separator separator-bottom separator-skew">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x="0"
-              y="0"
-            >
-              <polygon className="fill-white" points="2560 0 2560 100 0 100" />
-            </svg>
-          </div>
-        </section>
-        {/* 1st Hero Variation */}
+    <span>
+      <span className="typing-text">{displayed}</span>
+      <span className="typing-cursor">|</span>
+    </span>
+  );
+};
+
+const Greetings = () => {
+  return (
+    <section id="about" className="hero-section">
+      <p className="hero-greeting animate-fade-in-up delay-1">Hi, my name is</p>
+      <h1 className="hero-name animate-fade-in-up delay-2">{greetings.name}.</h1>
+      <h2 className="hero-role animate-fade-in-up delay-3">
+        <TypingText />
+      </h2>
+      <p className="hero-description animate-fade-in-up delay-4">
+        {greetings.description}
+      </p>
+      <div className="hero-cta animate-fade-in-up delay-5">
+        {greetings.resumeLink && (
+          <a href={greetings.resumeLink} target="_blank" rel="noopener noreferrer" className="btn-outline-teal">
+            View Resume
+          </a>
+        )}
+        <a href="#contact" className="btn-outline-teal">
+          Get In Touch
+        </a>
       </div>
-    </main>
+    </section>
   );
 };
 

@@ -1,31 +1,54 @@
 import React from "react";
 import { projects } from "../portfolio";
-import { Container, Row } from "reactstrap";
-import ProjectsCard from "../components/ProjectsCard";
+
+const techTags: Record<string, string[]> = {
+  "Real-Time Chat App with AI":  ["FastAPI", "WebSockets", "LangChain", "Llama 3", "Redis", "Docker"],
+  "GenAI Document Summarizer":   ["LangChain", "LlamaIndex", "Llama 3", "FastAPI", "Python"],
+  "Smart Attendance System":     ["Flask", "Python", "Siamese NN", "OpenCV"],
+  "Micro E-Commerce Platform":   ["Django", "Python", "Stripe", "PostgreSQL"],
+  "Music Controller (Real-Time)":["Django", "React", "WebSockets", "Channels"],
+  "Developer Portfolio":         ["Next.js", "TypeScript", "Bootstrap"],
+};
 
 const Projects = () => {
   return (
-    projects && (
-      <section className="section section-lg">
-        <Container>
-          <div className="d-flex p-4">
-            <div>
-              <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-info">
-                <i className="ni ni-laptop text-info" />
+    <section id="projects" className="portfolio-section">
+      <p className="section-label">06. Projects</p>
+      <h2 className="section-heading">Things I&apos;ve Built</h2>
+
+      <div className="projects-grid">
+        {projects.map((project, i) => (
+          <div className="project-card" key={i}>
+            <div className="project-card-top">
+              <span className="project-folder-icon">
+                <i className="fa fa-folder-open-o" />
+              </span>
+              <div className="project-links">
+                {project.github && (
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <i className="fa fa-github" />
+                  </a>
+                )}
+                {project.link && (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                    <i className="fa fa-external-link" />
+                  </a>
+                )}
               </div>
             </div>
-            <div className="pl-4">
-              <h4 className="display-3 text-info">Projects</h4>
+
+            <h3 className="project-name">{project.name}</h3>
+            <p className="project-desc">{project.desc}</p>
+
+            <div className="project-tags">
+              {(techTags[project.name] || []).map((tag, j) => (
+                <span key={j} className="project-tag">{tag}</span>
+              ))}
             </div>
           </div>
-          <Row className="row-grid align-items-center">
-            {projects.map((data, i) => {
-              return <ProjectsCard key={i} {...data} />;
-            })}
-          </Row>
-        </Container>
-      </section>
-    )
+        ))}
+      </div>
+    </section>
   );
 };
 

@@ -1,157 +1,125 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import classnames from "classnames";
-import Alert from "./Alerts";
 
-import {
-  Button,
-  Card,
-  CardBody,
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
+const EMAIL = "abhipatel1698@gmail.com";
 
-export const ContactUs = () => {
+const ContactUs = () => {
   const form = useRef<HTMLFormElement>(null);
-  const [alert, setAlert] = useState<{
-    color: string;
-    icon: string;
-    message: string;
-  } | null>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [values, setValues] = useState({ user_name: "", user_email: "", user_message: "" });
 
-  const successAlert = {
-    color: "success",
-    icon: "ni ni-like-2",
-    message: " Your message has been sent successfully!",
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setValues((v) => ({ ...v, [e.target.name]: e.target.value }));
   };
 
-  const errorAlert = {
-    color: "danger",
-    icon: "ni ni-bell-55",
-    message: " Oops! Something went wrong. Please try again later.",
-  };
-
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submitting");
+    setStatus("sending");
 
-    console.log(form.current);
+    const serviceId  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey  = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-    const emailJsServiceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-
-    const emailJsTemplateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-
-    const emailJsPublicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-
-    if (
-      emailJsServiceId &&
-      emailJsTemplateId &&
-      emailJsPublicKey &&
-      form.current
-    ) {
-      emailjs
-        .sendForm(
-          emailJsServiceId,
-          emailJsTemplateId,
-          form.current,
-          emailJsPublicKey
-        )
-        .then(
-          (result) => {
-            console.log(result.text);
-            setAlert(successAlert);
-          },
-          (error) => {
-            console.log(error.text);
-            setAlert(errorAlert);
-          }
-        );
+    if (serviceId && templateId && publicKey && form.current) {
+      try {
+        await emailjs.sendForm(serviceId, templateId, form.current, publicKey);
+        setStatus("success");
+        setValues({ user_name: "", user_email: "", user_message: "" });
+      } catch {
+        fallbackMailto();
+      }
+    } else {
+      // No EmailJS configured — open mailto directly
+      fallbackMailto();
     }
   };
 
+  const fallbackMailto = () => {
+    const subject = encodeURIComponent(`Hey Abhishek — from ${values.user_name}`);
+    const body    = encodeURIComponent(
+      `Name: ${values.user_name}\nEmail: ${values.user_email}\n\n${values.user_message}`
+    );
+    window.open(`mailto:${EMAIL}?subject=${subject}&body=${body}`, "_blank");
+    setStatus("success");
+  };
+
   return (
-    <>
-      <section className="section section-lg section-shaped">
+    <section id="contact" style={{ padding: "6rem 0", maxWidth: "600px" }}>
+      <span className="contact-overline">07. What&apos;s Next?</span>
+      <h2 className="contact-heading" style={{ textAlign: "left" }}>Get In Touch</h2>
+      <p className="contact-text" style={{ textAlign: "left", margin: "0 0 2rem" }}>
+        I&apos;m currently open to new opportunities. Whether you have a question, a project idea,
+        or just want to say hi — drop me a message and I&apos;ll get back to you.
+      </p>
+
+      {status === "success" ? (
+        <div style={{
+          background: "rgba(100,255,218,0.05)",
+          border: "1px solid rgba(100,255,218,0.3)",
+          borderRadius: "8px",
+          padding: "2rem",
+          textAlign: "center",
+        }}>
+          <p style={{ color: "var(--teal)", fontFamily: "var(--font-mono)", fontSize: "1rem", margin: 0 }}>
+            ✓ Thanks! I&apos;ll get back to you soon.
+          </p>
+        </div>
+      ) : (
         <form ref={form} onSubmit={sendEmail}>
-          {alert && (
-            <Alert
-              color={alert.color}
-              icon={alert.icon}
-              message={alert.message}
-            />
+          <input
+            className="contact-form-field"
+            type="text"
+            name="user_name"
+            placeholder="Your name"
+            value={values.user_name}
+            onChange={handleChange}
+            required
+          />
+          <input
+            className="contact-form-field"
+            type="email"
+            name="user_email"
+            placeholder="Email address"
+            value={values.user_email}
+            onChange={handleChange}
+            required
+          />
+          <textarea
+            className="contact-form-field"
+            name="user_message"
+            placeholder="Your message..."
+            rows={5}
+            value={values.user_message}
+            onChange={handleChange}
+            required
+            style={{ resize: "vertical" }}
+          />
+
+          {status === "error" && (
+            <p style={{ color: "#ff6b6b", fontFamily: "var(--font-mono)", fontSize: "0.85rem", marginBottom: "1rem" }}>
+              ✗ Something went wrong. Please try again.
+            </p>
           )}
-          <Container>
-            <Row className="justify-content-center">
-              <Col lg="8">
-                <Card className="bg-gradient-secondary shadow">
-                  <CardBody className="p-lg-5">
-                    <h4 className="mb-1">Want to work with me?</h4>
-                    <p className="mt-0">
-                      Reach out to me using the form below.
-                    </p>
-                    <FormGroup className={classnames("mt-5", {})}>
-                      <InputGroup className="input-group-alternative">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="ni ni-user-run" />
-                          </InputGroupText>
-                        </InputGroupAddon>
-                        <Input
-                          placeholder="Your name"
-                          type="text"
-                          name="user_name"
-                        />
-                      </InputGroup>
-                    </FormGroup>
-                    <FormGroup className={classnames({})}>
-                      <InputGroup className="input-group-alternative">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="ni ni-email-83" />
-                          </InputGroupText>
-                        </InputGroupAddon>
-                        <Input
-                          placeholder="Email address"
-                          name="user_email"
-                          type="email"
-                        />
-                      </InputGroup>
-                    </FormGroup>
-                    <FormGroup className="mb-4">
-                      <Input
-                        className="form-control-alternative"
-                        cols="80"
-                        name="user_message"
-                        placeholder="Type a message..."
-                        rows="4"
-                        type="textarea"
-                      />
-                    </FormGroup>
-                    <div>
-                      <Button
-                        block
-                        className="btn-round"
-                        color="default"
-                        size="lg"
-                        type="submit"
-                      >
-                        Send Message
-                      </Button>
-                    </div>
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
+
+          <div style={{ display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap" }}>
+            <button
+              type="submit"
+              className="btn-outline-teal"
+              disabled={status === "sending"}
+            >
+              {status === "sending" ? "Opening..." : "Send Message"}
+            </button>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="btn-outline-teal"
+              style={{ fontSize: "0.75rem", opacity: 0.7 }}
+            >
+              or email directly
+            </a>
+          </div>
         </form>
-      </section>
-    </>
+      )}
+    </section>
   );
 };
 
