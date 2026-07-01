@@ -173,6 +173,11 @@ export const experience: ExperienceType[] = [
 
 export const projects: ProjectType[] = [
   {
+    name: "Rate Limiter API",
+    desc: "Production-grade rate limiting in FastAPI with 4 algorithms (Token Bucket, Sliding Window, Fixed Window, Leaky Bucket) implemented as atomic Redis Lua scripts. Per-route rules, per-user-tier limits, admin CRUD API, Prometheus metrics, and PostgreSQL audit log.",
+    github: "https://github.com/patelabhi1607/rate_limiter_api",
+  },
+  {
     name: "Smart Attendance System",
     desc: "Facial recognition attendance system using Flask and a Siamese Neural Network achieving 95%+ accuracy on live video feeds with real-time logging.",
     github: "https://github.com/patelabhi1607/smartattendance",
