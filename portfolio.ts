@@ -173,24 +173,9 @@ export const experience: ExperienceType[] = [
 
 export const projects: ProjectType[] = [
   {
-    name: "Real-Time Chat App with AI",
-    desc: "Scalable chat system with FastAPI, WebSockets, and Redis for real-time messaging. Integrated AI-powered message summarization and sentiment analysis using LangChain and Llama 3. Containerized with Docker for fault-tolerant deployment.",
-    github: "https://github.com/patelabhi1607",
-  },
-  {
-    name: "GenAI Document Summarizer",
-    desc: "Document summarization backend using LangChain, LlamaIndex, and Llama 3, processing PDFs, web pages, and text inputs. REST API service for structured summaries with async processing for high-performance AI tasks.",
-    github: "https://github.com/patelabhi1607",
-  },
-  {
     name: "Smart Attendance System",
     desc: "Facial recognition attendance system using Flask and a Siamese Neural Network achieving 95%+ accuracy on live video feeds with real-time logging.",
     github: "https://github.com/patelabhi1607/smartattendance",
-  },
-  {
-    name: "Micro E-Commerce Platform",
-    desc: "Django-powered e-commerce platform with product catalog, cart management, Stripe payment integration, and admin dashboard for inventory control.",
-    github: "https://github.com/patelabhi1607/micro-ecommerce/",
   },
   {
     name: "Music Controller (Real-Time)",
