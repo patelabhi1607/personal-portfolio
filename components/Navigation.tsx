@@ -13,15 +13,21 @@ import {
   Col,
 } from "reactstrap";
 
+const navSections = [
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
+
 const Navigation = () => {
   const [collapseClasses, setCollapseClasses] = useState("");
   const onExiting = () => setCollapseClasses("collapsing-out");
-
   const onExited = () => setCollapseClasses("");
 
   useEffect(() => {
     let headroom = new Headroom(document.getElementById("navbar-main")!);
-    // initialise
     headroom.init();
   });
 
@@ -69,83 +75,54 @@ const Navigation = () => {
                 </Row>
               </div>
               <Nav className="align-items-lg-center ml-lg-auto" navbar>
-                {socialLinks.facebook && (
-                  <NavItem>
+                {navSections.map(({ label, href }) => (
+                  <NavItem key={href}>
                     <NavLink
-                      rel="noopener"
-                      aria-label="Facebook"
+                      href={href}
                       className="nav-link-icon"
-                      href={socialLinks.facebook}
-                      target="_blank"
+                      style={{ fontWeight: 600, fontSize: "0.85rem", letterSpacing: "0.05em" }}
                     >
-                      <i className="fa fa-facebook-square" />
-                      <span className="nav-link-inner--text d-lg-none ml-2">
-                        Facebook
-                      </span>
+                      <span className="nav-link-inner--text">{label}</span>
                     </NavLink>
                   </NavItem>
-                )}
-                {socialLinks.instagram && (
-                  <NavItem>
-                    <NavLink
-                      rel="noopener"
-                      aria-label="Instagram"
-                      className="nav-link-icon"
-                      href={socialLinks.instagram}
-                      target="_blank"
-                    >
-                      <i className="fa fa-instagram" />
-                      <span className="nav-link-inner--text d-lg-none ml-2">
-                        Instagram
-                      </span>
-                    </NavLink>
-                  </NavItem>
-                )}
-                {socialLinks.github && (
-                  <NavItem>
-                    <NavLink
-                      rel="noopener"
-                      aria-label="Github"
-                      className="nav-link-icon"
-                      href={socialLinks.github}
-                      target="_blank"
-                    >
-                      <i className="fa fa-github" />
-                      <span className="nav-link-inner--text d-lg-none ml-2">
-                        Github
-                      </span>
-                    </NavLink>
-                  </NavItem>
-                )}
+                ))}
+                <NavItem className="ml-lg-2">
+                  <NavLink
+                    className="nav-link-icon"
+                    href={socialLinks.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Github"
+                  >
+                    <i className="fa fa-github" />
+                    <span className="nav-link-inner--text d-lg-none ml-2">Github</span>
+                  </NavLink>
+                </NavItem>
                 {socialLinks.linkedin && (
                   <NavItem>
                     <NavLink
-                      rel="noopener"
-                      aria-label="Linkedin"
                       className="nav-link-icon"
                       href={socialLinks.linkedin}
                       target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
                     >
                       <i className="fa fa-linkedin" />
-                      <span className="nav-link-inner--text d-lg-none ml-2">
-                        Linkedin
-                      </span>
+                      <span className="nav-link-inner--text d-lg-none ml-2">LinkedIn</span>
                     </NavLink>
                   </NavItem>
                 )}
                 {socialLinks.twitter && (
                   <NavItem>
                     <NavLink
-                      rel="noopener"
-                      aria-label="Twitter"
                       className="nav-link-icon"
                       href={socialLinks.twitter}
                       target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Twitter"
                     >
                       <i className="fa fa-twitter-square" />
-                      <span className="nav-link-inner--text d-lg-none ml-2">
-                        Twitter
-                      </span>
+                      <span className="nav-link-inner--text d-lg-none ml-2">Twitter</span>
                     </NavLink>
                   </NavItem>
                 )}

@@ -1,44 +1,29 @@
 import React from "react";
 import { SkillBars } from "../portfolio";
-import { Container, Row, Progress, Col } from "reactstrap";
-import Fade from "react-reveal/Fade";
-import GreetingLottie from "../components/DisplayLottie";
 
 const Proficiency = () => {
   return (
-    SkillBars && (
-      <Container className="section section-lg">
-        <Fade bottom duration={2000}>
-          <Row>
-            <Col lg="6">
-              <h1 className="h1">Proficiency</h1>
-              {SkillBars.map((skill) => {
-                return (
-                  <div className="progress-info" key={skill.Stack}>
-                    <div className="progress-label">
-                      <span>{skill.Stack}</span>
-                    </div>
-                    <div className="progress-percentage">
-                      <span>{skill.progressPercentage}%</span>
-                    </div>
-                    <Progress
-                      max="100"
-                      value={skill.progressPercentage}
-                      color="info"
-                      role="progressbar"
-                      aria-label={skill.Stack}
-                    />
-                  </div>
-                );
-              })}
-            </Col>
-            <Col lg="6">
-              <GreetingLottie animationPath="/lottie/build.json" />
-            </Col>
-          </Row>
-        </Fade>
-      </Container>
-    )
+    <section className="portfolio-section" style={{ paddingTop: 0 }}>
+      <p className="section-label">03. Proficiency</p>
+      <h2 className="section-heading">Skill Levels</h2>
+
+      <div style={{ maxWidth: "560px" }}>
+        {SkillBars.map((skill, i) => (
+          <div className="proficiency-item" key={i}>
+            <div className="proficiency-label">
+              <span>{skill.Stack}</span>
+              <span>{skill.progressPercentage}%</span>
+            </div>
+            <div className="proficiency-bar-bg">
+              <div
+                className="proficiency-bar-fill"
+                style={{ width: `${skill.progressPercentage}%` }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 
