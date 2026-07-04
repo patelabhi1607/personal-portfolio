@@ -173,6 +173,16 @@ export const experience: ExperienceType[] = [
 
 export const projects: ProjectType[] = [
   {
+    name: "IAM Platform",
+    desc: "Comprehensive identity & access management covering every authentication method (password, JWT with refresh rotation, sessions, API keys, PATs, TOTP 2FA, passkeys/WebAuthn, magic links, OAuth2 social login, an OAuth2 provider with PKCE + device flow, and SAML) and every authorization model (RBAC with role hierarchy, ABAC policy engine, ReBAC/Zanzibar, ACLs, ownership, multi-tenancy) behind a unified policy decision point. FastAPI + PostgreSQL + Redis + React/TypeScript.",
+    github: "https://github.com/patelabhi1607/iam_platform",
+  },
+  {
+    name: "Auth System API",
+    desc: "JWT authentication with refresh-token rotation and reuse detection, RBAC, Redis-backed token revocation, and a full password-reset flow. FastAPI + PostgreSQL + Redis with a React/TypeScript frontend, fully containerized.",
+    github: "https://github.com/patelabhi1607/auth_system_api",
+  },
+  {
     name: "Rate Limiter API",
     desc: "Production-grade rate limiting in FastAPI with 4 algorithms (Token Bucket, Sliding Window, Fixed Window, Leaky Bucket) implemented as atomic Redis Lua scripts. Per-route rules, per-user-tier limits, admin CRUD API, Prometheus metrics, and PostgreSQL audit log.",
     github: "https://github.com/patelabhi1607/rate_limiter_api",
