@@ -188,6 +188,11 @@ export const projects: ProjectType[] = [
     github: "https://github.com/patelabhi1607/rate_limiter_api",
   },
   {
+    name: "URL Shortener (AI)",
+    desc: "Bitly-style shortener where Claude generates semantic slugs from the destination page, with Redis cache-aside redirects, click analytics (device/browser/geo + time series), QR codes, link expiration and click limits, password-protected links, an AI phishing/safety check, and UTM building. FastAPI + PostgreSQL + Redis + React/TypeScript.",
+    github: "https://github.com/patelabhi1607/url_shortener_ai",
+  },
+  {
     name: "Smart Attendance System",
     desc: "Facial recognition attendance system using Flask and a Siamese Neural Network achieving 95%+ accuracy on live video feeds with real-time logging.",
     github: "https://github.com/patelabhi1607/smartattendance",
