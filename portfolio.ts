@@ -193,6 +193,11 @@ export const projects: ProjectType[] = [
     github: "https://github.com/patelabhi1607/url_shortener_ai",
   },
   {
+    name: "Real-time Chat API",
+    desc: "WhatsApp-class chat backend using Kafka as a durable, ordered message log and Redis Pub/Sub for cross-instance WebSocket fan-out. Direct + group chats, presence, typing indicators, read receipts, reactions, replies, edit/delete, message search, and group admin. FastAPI + WebSockets + PostgreSQL + Redis + Kafka + React/TypeScript.",
+    github: "https://github.com/patelabhi1607/realtime_chat_api",
+  },
+  {
     name: "Smart Attendance System",
     desc: "Facial recognition attendance system using Flask and a Siamese Neural Network achieving 95%+ accuracy on live video feeds with real-time logging.",
     github: "https://github.com/patelabhi1607/smartattendance",
