@@ -198,6 +198,11 @@ export const projects: ProjectType[] = [
     github: "https://github.com/patelabhi1607/realtime_chat_api",
   },
   {
+    name: "Payment System API",
+    desc: "Stripe-style payment backend demonstrating idempotency keys (no double charges), cryptographically signed webhook verification, and a Kafka event stream fanned out to independent, idempotent consumers for receipts, double-entry ledger, and analytics. Refunds, subscriptions, and PCI-safe design. FastAPI + PostgreSQL + Redis + Kafka + React/TypeScript.",
+    github: "https://github.com/patelabhi1607/payment_system_api",
+  },
+  {
     name: "Smart Attendance System",
     desc: "Facial recognition attendance system using Flask and a Siamese Neural Network achieving 95%+ accuracy on live video feeds with real-time logging.",
     github: "https://github.com/patelabhi1607/smartattendance",
