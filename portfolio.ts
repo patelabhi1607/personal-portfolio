@@ -203,16 +203,6 @@ export const projects: ProjectType[] = [
     github: "https://github.com/patelabhi1607/payment_system_api",
   },
   {
-    name: "Smart Attendance System",
-    desc: "Facial recognition attendance system using Flask and a Siamese Neural Network achieving 95%+ accuracy on live video feeds with real-time logging.",
-    github: "https://github.com/patelabhi1607/smartattendance",
-  },
-  {
-    name: "Music Controller (Real-Time)",
-    desc: "Collaborative music controller with Django Channels (WebSockets) and React letting multiple users vote on and control a shared queue in real-time.",
-    github: "https://github.com/patelabhi1607/music_controller",
-  },
-  {
     name: "Developer Portfolio",
     desc: "Personal portfolio built with Next.js, TypeScript, and Bootstrap featuring Lottie animations, Iconify skill icons, and GitHub GraphQL integration.",
     github: "https://github.com/patelabhi1607/personal-portfolio",
